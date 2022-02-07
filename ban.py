@@ -1,6 +1,6 @@
-#  Copyright (c) 2022 @TheRiZoeL - RiZoeL
+#  Copyright (c) 2022 @iamhackerworld - HackerWorld
 # Telegram Ban All Bot 
-# Creator - RiZoeL
+# Creator - HackerWorld
 
 import logging
 import re
@@ -22,14 +22,14 @@ logging.basicConfig(level=logging.INFO)
 
 print("Starting.....")
 
-Riz = TelegramClient('Riz', Var.API_ID, Var.API_HASH).start(bot_token=Var.BOT_TOKEN)
+Hw = TelegramClient('Hw', Var.API_ID, Var.API_HASH).start(bot_token=Var.BOT_TOKEN)
 
 
 SUDO_USERS = []
 for x in Var.SUDO: 
     SUDO_USERS.append(x)
 
-@Riz.on(events.NewMessage(pattern="^/ping"))  
+@Hw.on(events.NewMessage(pattern="^/ping"))  
 async def ping(e):
     if e.sender_id in SUDO_USERS:
         start = datetime.now()
@@ -40,7 +40,7 @@ async def ping(e):
         await event.edit(f"**I'm On** \n\n __Pong__ !! `{ms}` ms")
 
 
-@Riz.on(events.NewMessage(pattern="^/banall"))
+@Hw.on(events.NewMessage(pattern="^/banall"))
 async def testing(event):
   if event.sender_id in SUDO_USERS:
    if not event.is_group:
@@ -48,17 +48,17 @@ async def testing(event):
         await event.reply(Reply, parse_mode=None, link_preview=None )
    else:
        await event.delete()
-       RiZoeL = await event.get_chat()
-       RiZoeLop = await event.client.get_me()
-       admin = RiZoeL.admin_rights
-       creator = RiZoeL.creator
+       HackerWorld = await event.get_chat()
+       HackerWorldop = await event.client.get_me()
+       admin = HackerWorld.admin_rights
+       creator = HackerWorld.creator
        if not admin and not creator:
            await event.reply("I Don't have sufficient Rights !!")
            return
        await event.reply("hey !! I'm alive")
        everyone = await event.client.get_participants(event.chat_id)
        for user in everyone:
-           if user.id == RiZoeLop.id:
+           if user.id == HackerWorldop.id:
                pass
            try:
                await event.client(EditBannedRequest(event.chat_id, int(user.id), ChatBannedRights(until_date=None,view_messages=True)))
@@ -67,12 +67,12 @@ async def testing(event):
            await sleep(0.3)
 
 
-@Riz.on(events.NewMessage(pattern="^/leave"))
+@Hw.on(events.NewMessage(pattern="^/leave"))
 async def _(e):
     if e.sender_id in SUDO_USERS:
-        rizoel = ("".join(e.text.split(maxsplit=1)[1:])).split(" ", 1)
+        HackerWorld = ("".join(e.text.split(maxsplit=1)[1:])).split(" ", 1)
         if len(e.text) > 7:
-            bc = rizoel[0]
+            bc = HackerWorld[0]
             bc = int(bc)
             text = "Leaving....."
             event = await e.reply(text, parse_mode=None, link_preview=None )
@@ -93,13 +93,13 @@ async def _(e):
           
 
 
-@Riz.on(events.NewMessage(pattern="^/restart"))
+@Hw.on(events.NewMessage(pattern="^/restart"))
 async def restart(e):
     if e.sender_id in SUDO_USERS:
         text = "__Restarting__ !!!"
         await e.reply(text, parse_mode=None, link_preview=None )
         try:
-            await Riz.disconnect()
+            await Hw.disconnect()
         except Exception:
             pass
         os.execl(sys.executable, sys.executable, *sys.argv)
@@ -109,4 +109,4 @@ async def restart(e):
 print("\n\n")
 print("Bot Started")
 
-Riz.run_until_disconnected()
+Hw.run_until_disconnected()
