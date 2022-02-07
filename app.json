@@ -1,7 +1,7 @@
 {
     "name": "Ban All Bot",
     "description": "https://telegra.ph/file/1f63de6e3ce65ef6b9f00.jpg",
-    "repository": "https://github.com/MrRizoel/BanAllBot",
+    "repository": "https://github.com/hackerworldyt/Ban-All-Member-Bot",
     "logo": "",
     "keywords": [
         "python",
@@ -26,7 +26,7 @@
    ],
     "env": {
         "BOT_TOKEN": {
-            "description": "Your bot token",
+            "description": "BOT TOKEN",
             "value": "",
             "required": true
         },
@@ -41,7 +41,7 @@
             "required": true
         },
         "SUDO": {
-            "description": "sudo ids here.",
+            "description": "SUDO USERS.",
             "value": "",
             "required": true
         }
